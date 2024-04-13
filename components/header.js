@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Modal, StyleSheet, Switch, Text, TextInput, View, ScrollView, Pressable, Dimensions } from "react-native";
+import { Modal, StyleSheet, Switch, Text, Image, TextInput, View, ScrollView, Pressable, Dimensions } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import * as ImagePicker from 'expo-image-picker';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 
@@ -20,9 +21,24 @@ export default function Header() {
   const [isEnabled, setIsEnabled] = useState(true);
   const [isEnabled2, setIsEnabled2] = useState(false);
   const [index, setIndex] = useState(2);
+  const [selectedImages, setSelectedImage] = useState([null, null, null, null, null, null]);
 
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
   const toggleSwitch2 = () => setIsEnabled2(previousState => !previousState);
+  const pickImageAsync = async (index) => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    if (!result.canceled) {
+      let images = [...selectedImages];
+      images[index] = result.assets[0].uri;
+      setSelectedImage(images);
+    } else {
+      alert('You did not select any image.');
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -68,50 +84,138 @@ export default function Header() {
                 <Text style={styles.title}>Photos</Text>
               </View>
               <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8}}>
-                <View style={styles.photoView}>
-                  <Pressable>
-                    <View style={styles.photoPlus}>
-                      <AntDesign name="plus" size={20} color="white" />
-                    </View>
-                  </Pressable>
-                </View>
-                <View style={styles.photoView}>
-                  <Pressable>
-                    <View style={styles.photoPlus}>
-                      <AntDesign name="plus" size={20} color="white" />
-                    </View>
-                  </Pressable>
-                </View>
-                <View style={styles.photoView}>
-                  <Pressable>
-                    <View style={styles.photoPlus}>
-                      <AntDesign name="plus" size={20} color="white" />
-                    </View>
-                  </Pressable>
-                </View>
+                {
+                  selectedImages[0] == null &&
+                  <View style={styles.photoView}>
+                    <Pressable onPress={() => pickImageAsync(0)}>
+                      <View style={styles.photoPlus}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+                {
+                  selectedImages[0] != null &&
+                  <View style={[styles.photoView, {borderWidth: 0}]}>
+                    <Image source={{uri: selectedImages[0]}} style={{width: (windowWidth - 88) / 3, height: 140, borderRadius: 15}} />
+                    <Pressable onPress={() => pickImageAsync(0)}>
+                      <View style={[styles.photoPlus, {top: -20}]}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+
+                {
+                  selectedImages[1] == null &&
+                  <View style={styles.photoView}>
+                    <Pressable onPress={() => pickImageAsync(1)}>
+                      <View style={styles.photoPlus}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+                {
+                  selectedImages[1] != null &&
+                  <View style={[styles.photoView, {borderWidth: 0}]}>
+                    <Image source={{uri: selectedImages[1]}} style={{width: (windowWidth - 88) / 3, height: 140, borderRadius: 15}} />
+                    <Pressable onPress={() => pickImageAsync(1)}>
+                      <View style={[styles.photoPlus, {top: -20}]}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+
+                {
+                  selectedImages[2] == null &&
+                  <View style={styles.photoView}>
+                    <Pressable onPress={() => pickImageAsync(2)}>
+                      <View style={styles.photoPlus}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+                {
+                  selectedImages[2] != null &&
+                  <View style={[styles.photoView, {borderWidth: 0}]}>
+                    <Image source={{uri: selectedImages[2]}} style={{width: (windowWidth - 88) / 3, height: 140, borderRadius: 15}} />
+                    <Pressable onPress={() => pickImageAsync(2)}>
+                      <View style={[styles.photoPlus, {top: -20}]}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
               </View>
               <View style={{flexDirection: 'row', justifyContent: 'space-between', marginVertical: 8}}>
-                <View style={styles.photoView}>
-                  <Pressable>
-                    <View style={styles.photoPlus}>
-                      <AntDesign name="plus" size={20} color="white" />
-                    </View>
-                  </Pressable>
-                </View>
-                <View style={styles.photoView}>
-                  <Pressable>
-                    <View style={styles.photoPlus}>
-                      <AntDesign name="plus" size={20} color="white" />
-                    </View>
-                  </Pressable>
-                </View>
-                <View style={styles.photoView}>
-                  <Pressable>
-                    <View style={styles.photoPlus}>
-                      <AntDesign name="plus" size={20} color="white" />
-                    </View>
-                  </Pressable>
-                </View>
+                {
+                  selectedImages[3] == null &&
+                  <View style={styles.photoView}>
+                    <Pressable onPress={() => pickImageAsync(3)}>
+                      <View style={styles.photoPlus}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+                {
+                  selectedImages[3] != null &&
+                  <View style={[styles.photoView, {borderWidth: 0}]}>
+                    <Image source={{uri: selectedImages[3]}} style={{width: (windowWidth - 88) / 3, height: 140, borderRadius: 15}} />
+                    <Pressable onPress={() => pickImageAsync(3)}>
+                      <View style={[styles.photoPlus, {top: -20}]}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+
+                {
+                  selectedImages[4] == null &&
+                  <View style={styles.photoView}>
+                    <Pressable onPress={() => pickImageAsync(4)}>
+                      <View style={styles.photoPlus}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+                {
+                  selectedImages[4] != null &&
+                  <View style={[styles.photoView, {borderWidth: 0}]}>
+                    <Image source={{uri: selectedImages[4]}} style={{width: (windowWidth - 88) / 3, height: 140, borderRadius: 15}} />
+                    <Pressable onPress={() => pickImageAsync(4)}>
+                      <View style={[styles.photoPlus, {top: -20}]}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+
+                {
+                  selectedImages[5] == null &&
+                  <View style={styles.photoView}>
+                    <Pressable onPress={() => pickImageAsync(5)}>
+                      <View style={styles.photoPlus}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
+                {
+                  selectedImages[5] != null &&
+                  <View style={[styles.photoView, {borderWidth: 0}]}>
+                    <Image source={{uri: selectedImages[5]}} style={{width: (windowWidth - 88) / 3, height: 140, borderRadius: 15}} />
+                    <Pressable onPress={() => pickImageAsync(5)}>
+                      <View style={[styles.photoPlus, {top: -20}]}>
+                        <AntDesign name="plus" size={20} color="white" />
+                      </View>
+                    </Pressable>
+                  </View>
+                }
               </View>
             </View>
             {/** Title Section */}
