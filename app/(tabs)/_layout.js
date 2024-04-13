@@ -1,5 +1,5 @@
 import { Tabs } from 'expo-router';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, Platform } from 'react-native';
 
 import Header from '../../components/header';
 import Icon from '../../constants/icon';
@@ -12,6 +12,8 @@ const SellingSVG = Icon.SellingSVG;
 const SellingDisableSVG = Icon.SellingDisableSVG;
 const MessagesSVG = Icon.MessagesSVG;
 const MessagesDisableSVG = Icon.MessagesDisableSVG;
+
+const os = Platform.OS;
 
 export default function TabLayout() {
   return (
@@ -67,14 +69,14 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    height: os == 'ios'? 100 : 80,
     paddingHorizontal: 30,
     borderTopColor: '#3fc0ef',
     borderTopWidth: 3,
     backgroundColor: 'white'
   },
   item: {
-    paddingVertical: 10
+    paddingVertical: os == 'ios'? 5 : 10
   },
   text: {
     fontSize: 12

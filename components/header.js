@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, StyleSheet, Switch, Text, Image, TextInput, View, ScrollView, Pressable } from "react-native";
+import { Modal, StyleSheet, Switch, Text, Image, TextInput, View, ScrollView, Pressable, Platform } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
@@ -15,6 +15,7 @@ const Pencil = icon.Pencil;
 const primaryColor = color.primaryColor;
 const disableColor = color.disableColor;
 const windowWidth = dimension.windowWidth;
+const os = Platform.OS;
 
 export default function Header({isSubHeader}) {
   const [modalVisible, setModalVisible] = useState(false);
@@ -273,7 +274,7 @@ export default function Header({isSubHeader}) {
                   value={isEnabled}
                 />
               </View>
-              <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: -20}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: os == 'ios'? 10 : -20}}>
                 <Text style={{color: primaryColor, fontSize: 15}}>Allow On All Categories</Text>
                 <Switch
                   trackColor={{false: disableColor, true: '#81DAF9'}}
@@ -283,7 +284,7 @@ export default function Header({isSubHeader}) {
                   value={isEnabled2}
                 />
               </View>
-              <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
+              <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: os == 'ios'? 20 : 0}}>
                 <Text style={{color: primaryColor, fontSize: 16, fontWeight: 'bold'}}>Maximum Distance</Text>
                 <Text style={{color: disableColor}}>20mi.</Text>
               </View>
@@ -342,14 +343,14 @@ export default function Header({isSubHeader}) {
                     <LinearGradient
                       colors={['#35C1F3', '#7CD9F8']}
                       style={[styles.buttons, styles.shadow]}>
-                      <Text style={[styles.text, {fontSize: 16}]}>Not Specified</Text>
+                      <Text style={[styles.text, {fontSize: 15}]}>Not Specified</Text>
                     </LinearGradient>
                   }
                   {
                     index != 2 &&
                     <Pressable onPress={() => setIndex(2)}>
                       <View style={[styles.buttons, {backgroundColor: '#dbdbdb'}]}>
-                        <Text style={[styles.text, {fontSize: 16}]}>Not Specified</Text>
+                        <Text style={[styles.text, {fontSize: 15}]}>Not Specified</Text>
                       </View>
                     </Pressable>
                   }
