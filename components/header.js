@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { Modal, StyleSheet, Switch, Text, Image, TextInput, View, ScrollView, Pressable, Dimensions } from "react-native";
+import { Modal, StyleSheet, Switch, Text, Image, TextInput, View, ScrollView, Pressable } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import Slider from '@react-native-community/slider';
 
-import Logo from '../assets/icons/VendrLogo.svg';
-import Close from '../assets/icons/X.svg';
-import Pencil from '../assets/icons/EditIcons.svg';
+import color from '../constants/color';
+import dimension from '../constants/dimension';
+import icon from '../constants/icon';
 
-const primaryColor = '#3fc0ef';
-const disableColor = '#b3b4b5';
-const windowWidth = Dimensions.get('window').width;
+const Logo = icon.Logo;
+const Close = icon.Close;
+const Pencil = icon.Pencil;
+const primaryColor = color.primaryColor;
+const disableColor = color.disableColor;
+const windowWidth = dimension.windowWidth;
 
 export default function Header({isSubHeader}) {
   const [modalVisible, setModalVisible] = useState(false);

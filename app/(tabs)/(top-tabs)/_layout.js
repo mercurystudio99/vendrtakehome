@@ -1,12 +1,15 @@
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { withLayoutContext } from "expo-router";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
+
+import dimension from "../../../constants/dimension";
+import color from "../../../constants/color";
   
 const { Navigator } = createMaterialTopTabNavigator();
 
 export const MaterialTopTabs = withLayoutContext(Navigator);
 
-const windowWidth = Dimensions.get('window').width;
+const windowWidth = dimension.windowWidth;
 
 export default function TabLayout() {
   return (
@@ -48,7 +51,7 @@ const styles = StyleSheet.create({
     height: 3,
     borderRadius: 100,
     marginLeft: 45,
-    backgroundColor: '#3fc0ef',
+    backgroundColor: color.primaryColor,
     shadowColor: 'black',
     shadowOpacity: 0.2,
     elevation: 4,
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   number: {
-    color: '#3fc0ef',
+    color: color.primaryColor,
     fontSize: 40,
     fontWeight: 'bold',
     textShadowColor: 'rgba(0, 0, 0, 0.3)',

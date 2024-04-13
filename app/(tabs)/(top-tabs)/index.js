@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { Entypo } from '@expo/vector-icons';
 
+import color from "../../../constants/color";
+
 const data = [
   { id: 1, title: "PlayStation Remote Player", subtitle: "or best offer", money: 140, chat: 6, request: 18 },
   { id: 2, title: "PlayStation Remote Player", subtitle: "or best offer", money: 140, chat: 6, request: 18 },
   { id: 3, title: "PlayStation Remote Player", subtitle: "or best offer", money: 140, chat: 6, request: 18 },
 ];
 
-const primaryColor = '#3fc0ef';
+const primaryColor = color.primaryColor;
 
 export default function ActiveScreen() {
   const Item = ({ title, subtitle, money, chat, request, index }) => (
