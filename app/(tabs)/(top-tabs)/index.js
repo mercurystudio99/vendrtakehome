@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image, FlatList, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import { Entypo } from '@expo/vector-icons';
 
 const data = [
@@ -11,7 +11,7 @@ const primaryColor = '#3fc0ef';
 
 export default function ActiveScreen() {
   const Item = ({ title, subtitle, money, chat, request, index }) => (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card}>
       <View style={styles.mainImageView}>
         <Image source={require('../../../assets/PSP.png')} resizeMode="cover" style={styles.mainImage} />
       </View>
@@ -37,7 +37,7 @@ export default function ActiveScreen() {
       <View style={[styles.border, styles.tail]}>
         <Entypo name="dots-three-horizontal" size={22} color={primaryColor} />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   const renderItem = ({ item, index }) => (

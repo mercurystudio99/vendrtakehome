@@ -13,7 +13,7 @@ const primaryColor = '#3fc0ef';
 const disableColor = '#b3b4b5';
 const windowWidth = Dimensions.get('window').width;
 
-export default function Header() {
+export default function Header({isSubHeader}) {
   const [modalVisible, setModalVisible] = useState(false);
   const [title, onChangeTitle] = useState('');
   const [desc, onChangeDesc] = useState('');
@@ -48,17 +48,20 @@ export default function Header() {
 			>
 				<Logo width={windowWidth} height={100} />
 			</LinearGradient>
-			<View style={{paddingVertical: 15}}>
-				<Pressable onPress={() => {
-          setModalVisible(true);
-        }}>
-						<LinearGradient
-								colors={['#35C1F3', '#7CD9F8']}
-								style={styles.button}>
-								<Text style={styles.text}>List an item</Text>
-						</LinearGradient>
-				</Pressable>
-			</View>
+      {
+        isSubHeader &&
+        <View style={{paddingTop: 15}}>
+          <Pressable onPress={() => {
+            setModalVisible(true);
+          }}>
+              <LinearGradient
+                  colors={['#35C1F3', '#7CD9F8']}
+                  style={styles.button}>
+                  <Text style={styles.text}>List an item</Text>
+              </LinearGradient>
+          </Pressable>
+        </View>
+      }
       <Modal
         animationType="slide"
         transparent={true}

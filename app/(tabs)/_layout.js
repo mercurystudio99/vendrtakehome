@@ -56,10 +56,10 @@ export default function TabLayout() {
         }
       })
     }>
-      <Tabs.Screen name="index" />
-      <Tabs.Screen name="buying" />
-      <Tabs.Screen name="(top-tabs)" options={{ header: () => <Header></Header> }} />
-      <Tabs.Screen name="messages" />
+      <Tabs.Screen name="index" options={{ header: () => <Header isSubHeader={false}></Header> }} />
+      <Tabs.Screen name="buying" options={{ header: () => <Header isSubHeader={false}></Header> }} />
+      <Tabs.Screen name="(top-tabs)" options={{ header: () => <Header isSubHeader={true}></Header> }} />
+      <Tabs.Screen name="messages" options={{ header: () => <Header isSubHeader={false}></Header> }} />
     </Tabs>
   );
 }
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     borderTopColor: '#3fc0ef',
     borderTopWidth: 3,
+    backgroundColor: 'white'
   },
   item: {
     paddingVertical: 10
